@@ -1,0 +1,28 @@
+services:
+# Sonarr - https://hotio.dev/containers/sonarr/
+# mkdir /volume1/docker/appdata/sonarr
+  sonarr:
+    container_name: sonarr
+    image: lscr.io/linuxserver/sonarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-file: ${DOCKERLOGGING_MAXFILE}
+        max-size: ${DOCKERLOGGING_MAXSIZE}
+    ports:
+      - 8989:8989
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - UMASK=002
+      # - TP_HOTIO=true
+      # - TP_THEME=dark
+      # - TP_ADDON=sonarr-text-logo
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DOCKERCONFDIR}/sonarr:/config
+      - ${DOCKERSTORAGEDIR}:/data
+      # - ${DOCKERCONFDIR}/scripts/98-themepark-sonarr:/etc/cont-init.d/98-themepark
+      # - ${DOCKERSTORAGEDIR}/torrents/tv:/data/torrents/tv

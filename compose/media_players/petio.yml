@@ -1,0 +1,29 @@
+services:
+  petio:
+      image: ghcr.io/petio-team/petio:latest
+      container_name: petio
+      hostname: petio
+      ports:
+          - '7777:7777'
+      networks:
+          - petio-network
+      environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      depends_on:
+          - mongo
+      volumes:
+        - ${DOCKERCONFDIR}/petio:/app/api/config
+        - ${DOCKERCONFDIR}/petio/logs:/app/logs
+
+
+  mongo:
+      image: mongo:4.4
+      container_name: mongo
+      hostname: mongo
+      networks:
+          - petio-network
+      user: '1028:100'
+      volumes:
+        - ${DOCKERCONFDIR}/mongo:/data

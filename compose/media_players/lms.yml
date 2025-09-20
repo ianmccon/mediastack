@@ -1,0 +1,21 @@
+services:
+  lms:
+    container_name: lms
+    image: lmscommunity/logitechmediaserver
+    volumes:
+      - ${DOCKERCONFDIR}/lms:/config:rw
+      - ${DOCKERSTORAGEDIR}/media/music:/music:ro
+      - ${DOCKERCONFDIR}:/playlist:rw
+      - /etc/localtime:/etc/localtime:ro
+      # - /etc/timezone:/etc/timezone:ro
+    ports:
+      - 9001:9001/tcp
+      - 9090:9090/tcp
+      - 3483:3483/tcp
+      - 3483:3483/udp
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - HTTP_PORT=9001
+    restart: always

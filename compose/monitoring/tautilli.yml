@@ -1,0 +1,13 @@
+services:
+  tautulli:
+    image: ghcr.io/tautulli/tautulli
+    container_name: tautulli
+    volumes:
+      - ${DOCKERCONFDIR}/tautulli:/data
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    ports:
+      - 8181:8181
+    restart: unless-stopped

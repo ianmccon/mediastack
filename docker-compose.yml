@@ -1,0 +1,72 @@
+
+networks:
+  default:
+    driver: bridge
+
+
+include:
+  # UTILITIES
+  # - compose/utilities/flaresolverr.yml
+  - compose/utilities/docker-gc.yml
+  # - compose/utilities/adguard.yml
+  # - compose/utilities/speedtest-tracker.yml
+
+  # MEDIA
+  - compose/media/sonarr.yml
+  - compose/media/radarr.yml
+  - compose/media/lidarr.yml
+  # - compose/media/whisparr.yml
+  - compose/media/prowlarr.yml
+
+  # MEDIA_PLAYERS
+  # - compose/media_players/jellyfin.yml
+  # - compose/media_players/plex.yml
+#  - compose/media_players/airsonic.yml
+  # - compose/media_players/navidrome.yml
+  # - compose/media_players/lms.yml
+  
+  # - compose/media_players/jellyseer.yml
+  - compose/media_players/overseerr.yml
+  # - compose/media_players/ombi.yml
+  # - compose/media_players/petio.yml
+
+
+  # DOWNLOADERS
+  # - compose/downloaders/transmission.yml
+  # - compose/downloaders/qbittorrent.yml
+  # - compose/downloaders/sabnzbd.yml
+
+  # DATABASES
+
+
+  # MONITORING
+  - compose/monitoring/dozzle.yml
+  # - compose/monitoring/tautilli.yml
+  - compose/monitoring/watchtower.yml
+
+  # DASHBOARDS
+  # - compose/dashboards/heimdall.yml
+  # - compose/dashboards/organizr.yml
+  # - compose/dashboards/dashy.yml
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+

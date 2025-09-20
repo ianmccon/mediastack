@@ -1,0 +1,14 @@
+services:
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${DOCKERCONFDIR}/sabnzb:/config
+      - ${DOCKERSTORAGEDIR}:/data:rw
+    ports:
+      - 8082:8080
+    restart: unless-stopped

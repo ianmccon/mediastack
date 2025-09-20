@@ -1,0 +1,13 @@
+services:
+  dashy:
+    image: lissy93/dashy:latest
+    container_name: dashy
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${DOCKERCONFDIR}/dashy:/config
+    ports:
+      - 4000:8080
+    restart: unless-stopped

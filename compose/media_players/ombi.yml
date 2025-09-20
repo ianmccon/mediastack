@@ -1,0 +1,14 @@
+services:
+  # Ombi
+  ombi:
+    image: ghcr.io/linuxserver/ombi:latest
+    container_name: ombi
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${DOCKERCONFDIR}/ombi:/config
+    ports:
+      - "5000:3579"

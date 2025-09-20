@@ -1,0 +1,22 @@
+services:
+  airsonic:
+    image: ghcr.io/airsonic-advanced/airsonic-advanced:gitrun-8809770505
+    container_name: airsonic
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    profiles: ["media", "all"]
+    networks: 
+      - default
+    volumes:
+      - ${DOCKERCONFDIR}/airsonic/podcasts:/data/podcasts
+      - ${DOCKERCONFDIR}/airsonic/playlists:/data/playlists
+      - ${DOCKERCONFDIR}/airsonic/config:/config
+      - ${DOCKERSTORAGEDIR}/media/music:/data/music
+    ports:
+      - 4040:4040
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      # - JAVA_OPTS: '-Dserver.forward-headers-strategy=native' # optional - if you use a reverse-proxy

@@ -1,0 +1,13 @@
+services:
+  whisparr:
+    container_name: whisparr
+    image: ghcr.io/hotio/whisparr
+    ports:
+      - 6969:6969
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${DOCKERCONFDIR}/whisparr:/config
+      - ${DOCKERSTORAGEDIR}:/data

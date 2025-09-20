@@ -1,0 +1,28 @@
+services:
+# Radarr - https://hotio.dev/containers/radarr/
+# mkdir /volume1/docker/appdata/radarr
+  radarr:
+    container_name: radarr
+    image: lscr.io/linuxserver/radarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-file: ${DOCKERLOGGING_MAXFILE}
+        max-size: ${DOCKERLOGGING_MAXSIZE}
+    ports:
+      - 7878:7878
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - UMASK=002
+      # - TP_HOTIO=true
+      # - TP_THEME=dark
+      # - TP_ADDON=radarr-text-logo
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DOCKERCONFDIR}/radarr:/config
+      - ${DOCKERSTORAGEDIR}:/data
+      # - ${DOCKERCONFDIR}/scripts/98-themepark-radarr:/etc/cont-init.d/98-themepark
+      # - ${DOCKERSTORAGEDIR}/torrents/movies:/data/torrents/movies
